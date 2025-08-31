@@ -1,8 +1,8 @@
-# SailFish Prediction With V3 Price Oracle
+# Betedra
 
 ## Description
 
-SailFish Prediction with V3 Oracle
+Prediction using Pyth Oracle
 
 ## Documentation
 
