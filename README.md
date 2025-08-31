@@ -2,13 +2,14 @@
 
 ## Description
 
-Prediction using Pyth Oracle
+Prediction on Hedera using Pyth Oracle
 
 ## Documentation
 
 ### HBAR/USDC
 
-- Prediction Testnet: 
+- Prediction Testnet: [0x09D3Cf0cE93f64298B1D286A613299fDafF8FFAF](https://hashscan.io/testnet/contract/0.0.6740875)
+- Prediction Mainnet:
 
 ## Deployment
 

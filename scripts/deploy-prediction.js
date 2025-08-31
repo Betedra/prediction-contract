@@ -27,6 +27,17 @@ async function main() {
 
   const predictionAddress = await predictionContract.getAddress();
 
+
+  //Get price
+  // const predictionContract = await ethers.getContractAt(
+  //   "BetedraPrediction",
+  //   "0xfB288183610Eb495e26A855F0A8fb7cDF4d96B77"
+  // );
+
+  const price = await predictionContract.getPriceFromOracle();
+
+  console.log("Response: ", price);
+
   console.log("Prediction Contract Address deployed to: ", predictionAddress);
 }
 

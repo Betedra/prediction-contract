@@ -7,7 +7,6 @@ import {Pausable} from "@openzeppelin/contracts/utils/Pausable.sol";
 import {ReentrancyGuard} from "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
 import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import {SafeERC20} from "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
-import {UniswapV3PriceFeed} from "../oracle/UniswapV3PriceFeed.sol";
 import "@pythnetwork/pyth-sdk-solidity/IPyth.sol";
 
 /**
@@ -698,14 +697,15 @@ contract BetedraPrediction is Ownable, Pausable, ReentrancyGuard {
             block.timestamp < rounds[epoch].lockTimestamp;
     }
 
+    function getPriceFromOracle() public view returns (uint256) {
+        return _getPriceFromOracle();
+    }
+
     /**
      * @notice Get latest recorded price from oracle
      */
     function _getPriceFromOracle() internal view returns (uint256) {
-        PythStructs.Price memory price = pyth.getPriceNoOlderThan(
-            hbarUsdPriceId,
-            30
-        );
+        PythStructs.Price memory price = pyth.getPriceUnsafe(hbarUsdPriceId);
 
         uint256 hbarPrice8Decimals = (uint(uint64(price.price)) * (10 ** 8)) /
             (10 ** uint8(uint32(-1 * price.expo)));
@@ -724,4 +724,6 @@ contract BetedraPrediction is Ownable, Pausable, ReentrancyGuard {
         }
         return size > 0;
     }
+
+    receive() external payable {}
 }
