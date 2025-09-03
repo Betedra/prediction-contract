@@ -705,7 +705,7 @@ contract BetedraPrediction is Ownable, Pausable, ReentrancyGuard {
      * @notice Get latest recorded price from oracle
      */
     function _getPriceFromOracle() internal view returns (uint256) {
-        PythStructs.Price memory price = pyth.getPriceUnsafe(hbarUsdPriceId);
+        PythStructs.Price memory price = pyth.getPriceNoOlderThan(hbarUsdPriceId, 60);
 
         uint256 hbarPrice8Decimals = (uint(uint64(price.price)) * (10 ** 8)) /
             (10 ** uint8(uint32(-1 * price.expo)));
