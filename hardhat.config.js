@@ -21,7 +21,7 @@ module.exports = {
       url: `https://testnet.hashio.io/api`,
       accounts: [process.env.PRIVATE_KEY],
     },
-    educhain: {
+    "hedera-mainnet": {
       url: "https://mainnet.hashio.io/api",
       accounts: [process.env.PRIVATE_KEY],
       gasPrice: 1000000000,
